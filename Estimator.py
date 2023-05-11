@@ -13,6 +13,7 @@ n_result = 1
 st.title('Gingivitis Estimator')
 st.write('犬および猫の歯肉炎を判定します.')
 st.write('左側のサイドバーような臼歯の周辺画像が必要です')
+st.write('上下は不問です.')
 st.write('')
 
 st.sidebar.title('サンプル画像')
