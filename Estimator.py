@@ -23,8 +23,8 @@ st.sidebar.image('./images/C30-2.jpg', caption='猫-中度歯肉炎')
 st.sidebar.image('./images/c69-2.jpg', caption='猫-重度歯肉炎')
 st.sidebar.image('./images/d70-1.jpg', caption='犬-歯肉炎なし')
 
-new_model = tf.keras.models.load_model('./my_model_EN_adam.h5')
 uploaded_file = st.file_uploader("ファイルアップロード", type=['png', 'jpg','jpeg', 'webp'])
+new_model = tf.keras.models.load_model('./my_model_EN_adam.h5')
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
