@@ -22,8 +22,6 @@ st.sidebar.image('./images/C30-2.jpg', caption='猫-中度歯肉炎')
 st.sidebar.image('./images/c69-2.jpg', caption='猫-重度歯肉炎')
 st.sidebar.image('./images/d70-1.jpg', caption='犬-歯肉炎なし')
 
-uploaded_file = st.file_uploader("ファイルアップロード", type=['png', 'jpg', 'jpeg', 'webp'])
-
 
 @st.cache
 def load_model():
@@ -32,7 +30,11 @@ def load_model():
 
 new_model = load_model()
 
-if uploaded_file is not None:
+uploaded_file = st.file_uploader("ファイルアップロード", type=['png', 'jpg', 'jpeg', 'webp'])
+
+if uploaded_file is None:
+    pass
+else:
     image = Image.open(uploaded_file)
     image = image.convert("RGB")
     image_show = np.array(image)
