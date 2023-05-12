@@ -9,7 +9,6 @@ n_class = len(labels)
 img_size = 224
 n_result = 1
 
-
 st.title('Gingivitis Estimator')
 st.write('犬および猫の歯肉炎を判定します.')
 st.write('左側のサイドバーような臼歯の周辺画像が必要です')
@@ -23,8 +22,15 @@ st.sidebar.image('./images/C30-2.jpg', caption='猫-中度歯肉炎')
 st.sidebar.image('./images/c69-2.jpg', caption='猫-重度歯肉炎')
 st.sidebar.image('./images/d70-1.jpg', caption='犬-歯肉炎なし')
 
-uploaded_file = st.file_uploader("ファイルアップロード", type=['png', 'jpg','jpeg', 'webp'])
-new_model = tf.keras.models.load_model('./my_model_EN_adam.h5')
+uploaded_file = st.file_uploader("ファイルアップロード", type=['png', 'jpg', 'jpeg', 'webp'])
+
+
+@st.cache
+def load_model():
+    return tf.keras.models.load_model('./my_model_EN_adam.h5')
+
+
+new_model = load_model()
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
@@ -50,9 +56,7 @@ if uploaded_file is not None:
         st.write(label)
 
     chart_data = pd.DataFrame(
-        pred[0]*100,
+        pred[0] * 100,
         index=labels,
         columns=['probability(%)'])
     st.bar_chart(chart_data)
-
-
