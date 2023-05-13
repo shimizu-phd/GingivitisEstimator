@@ -23,7 +23,7 @@ st.sidebar.image('./images/c69-2.jpg', caption='猫-重度歯肉炎')
 st.sidebar.image('./images/d70-1.jpg', caption='犬-歯肉炎なし')
 
 
-@st.cache(hash_funcs={'MyUnhashableClass': lamda _: None})
+@st.cache_resource
 def load_model():
     return tf.keras.models.load_model('./my_model_EN_adam.h5')
 
