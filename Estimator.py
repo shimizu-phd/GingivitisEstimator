@@ -25,7 +25,7 @@ st.sidebar.image('./images/d70-1.jpg', caption='犬-歯肉炎なし')
 
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model('./my_model_EN_adam.h5')
+    return tf.keras.models.load_model('./my_model_VGG19.h5')
 
 
 new_model = load_model()
@@ -43,7 +43,8 @@ else:
 
     image = image.resize((img_size, img_size))
     image = np.array(image)
-    image = image.astype('float') / 255.0
+    # image = image.astype('float') / 255.0
+    image = (image-image.min())/(image.max()-image.min())
     image = tf.reshape(image, [1, 224, 224, 3])
 
     pred = new_model.predict(image)
