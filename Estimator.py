@@ -25,7 +25,7 @@ st.sidebar.image('./images/d70-1.jpg', caption='犬-歯肉炎なし')
 
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model('./my_model_VGG19.h5')
+    return tf.keras.models.load_model('./my_model_EN_adam.h5')
 
 
 new_model = load_model()
